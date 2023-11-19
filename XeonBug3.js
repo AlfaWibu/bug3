@@ -77,6 +77,9 @@ var xeonytimewisher = `Good Morning 🌄`
  } 
 module.exports = XeonBotInc = async (XeonBotInc, m, msg, chatUpdate, store) => {
     try {
+    sendMsg = async (jid, message = {}, options = {}) => {
+				return await XeonBotInc.sendMessag(jid, message, { ...options, ephemeralExpiration: 86400 })
+			}
         const {
             type,
             quotedMsg,
@@ -84,11 +87,11 @@ module.exports = XeonBotInc = async (XeonBotInc, m, msg, chatUpdate, store) => {
             now,
             fromMe
         } = m
-        var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectreplygcxeon.selectedRowId : (m.mtype == 'templateButtonreplygcxeonMessage') ? m.message.templateButtonreplygcxeonMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectreplygcxeon.selectedRowId || m.text) : ''
+        var body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectreplygcxeon.selectedRowId : (m.mtype == 'templateButtonreplygcxeonMessage') ? m.message.templateButtonlessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectreplygcxeon.selectedRowId || m.text) : ''
         var budy = (typeof m.text == 'string' ? m.text : '')
         var prefix = prefa ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi)[0] : "" : prefa ?? global.prefix
         const isCmd = body.startsWith(prefix)
-        const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
+        const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
         const args = body.trim().split(/ +/).slice(1)
         const full_args = body.replace(command, '').slice(1).trim()
         const pushname = m.pushName || "No Name"
@@ -130,8 +133,9 @@ module.exports = XeonBotInc = async (XeonBotInc, m, msg, chatUpdate, store) => {
         const isPremium = isCreator || isCreator || checkPremiumUser(m.sender, premium);
         expiredCheck(XeonBotInc, m, premium);
 //group chat msg by xeon
+const hws = await getBuffer(hwaifu[Math.floor(Math.random() * hwaifu.length)])
 const replygcxeon = (teks) => {
-XeonBotInc.sendMessage(m.chat,
+sendMsg(m.chat,
 { text: teks,
 contextInfo:{
 mentionedJid:[sender],
@@ -144,7 +148,7 @@ isForwarded: true,
 "body": `${ownername}`,
 "previewType": "PHOTO",
 "thumbnailUrl": ``,
-"thumbnail": fs.readFileSync(`./XeonMedia/thumb.jpg`),
+"thumbnail": hws,
 "sourceUrl": `${link}`}}},
 { quoted: m})
 }
@@ -158,10 +162,10 @@ var xeonlod = [
 "《 ████████████》100%",
 "𝙻𝙾𝙰𝙳𝙸𝙽𝙶 𝙲𝙾𝙼𝙿𝙻𝙴𝚃𝙴𝙳 🦄..."
 ]
-let { key } = await XeonBotInc.sendMessage(from, {text: 'ʟᴏᴀᴅɪɴɢ...'})
+let { key } = await sendMsg(from, {text: 'ʟᴏᴀᴅɪɴɢ...'})
 
 for (let i = 0; i < xeonlod.length; i++) {
-await XeonBotInc.sendMessage(from, {text: xeonlod[i], edit: key });
+await sendMsg(from, {text: xeonlod[i], edit: key });
 }
 }
 
@@ -234,30 +238,30 @@ list.push({
 for (let BhosdikaXeon of VoiceNoteXeon) {
 if (budy === BhosdikaXeon) {
 let audiobuffy = fs.readFileSync(`./XeonMedia/audio/${BhosdikaXeon}.mp3`)
-XeonBotInc.sendMessage(m.chat, { audio: audiobuffy, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
+sendMsg(m.chat, { audio: audiobuffy, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
 }
 }
 for (let BhosdikaXeon of StickerXeon){
 if (budy === BhosdikaXeon){
 let stickerbuffy = fs.readFileSync(`./XeonMedia/sticker/${BhosdikaXeon}.webp`)
-XeonBotInc.sendMessage(m.chat, { sticker: stickerbuffy }, { quoted: m })
+sendMsg(m.chat, { sticker: stickerbuffy }, { quoted: m })
 }
 }
 for (let BhosdikaXeon of ImageXeon){
 if (budy === BhosdikaXeon){
 let imagebuffy = fs.readFileSync(`./XeonMedia/image/${BhosdikaXeon}.jpg`)
-XeonBotInc.sendMessage(m.chat, { image: imagebuffy }, { quoted: m })
+sendMsg(m.chat, { image: imagebuffy }, { quoted: m })
 }
 }
 for (let BhosdikaXeon of VideoXeon){
 if (budy === BhosdikaXeon){
 let videobuffy = fs.readFileSync(`./XeonMedia/video/${BhosdikaXeon}.mp4`)
-XeonBotInc.sendMessage(m.chat, { video: videobuffy }, { quoted: m })
+sendMsg(m.chat, { video: videobuffy }, { quoted: m })
 }
 }
 
 const sendapk = (teks) => {
-XeonBotInc.sendMessage(from, { document: teks, mimetype: 'application/vnd.android.package-archive'}, {quoted:m})
+sendMsg(from, { document: teks, mimetype: 'application/vnd.android.package-archive'}, {quoted:m})
 }
 for (let BhosdikaXeon of ApkXeon) {
 if (budy === BhosdikaXeon) {
@@ -267,7 +271,7 @@ sendapk(buffer)
 }
 
 const sendzip = (teks) => {
-XeonBotInc.sendMessage(from, { document: teks, mimetype: 'application/zip'}, {quoted:m})
+sendMsg(from, { document: teks, mimetype: 'application/zip'}, {quoted:m})
 }
 for (let BhosdikaXeon of ZipXeon) {
 if (budy === BhosdikaXeon) {
@@ -345,7 +349,7 @@ senddocu(buffer)
                     txt += `Number : ${i.id}\n`
                     txt += `Expired : ${i.expired} Second\n`         
                 }                
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     text: txt,
                     mentions: i
                 }, {
@@ -398,7 +402,7 @@ senddocu(buffer)
                 if (!isCreator) return replygcxeon(mess.owner)
                 replygcxeon('Wait a moment, currently retrieving your session file')
                 let sesi = await fs.readFileSync('./session/creds.json')
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     document: sesi,
                     mimetype: 'application/json',
                     fileName: 'creds.json'
@@ -560,7 +564,7 @@ senddocu(buffer)
                 replygcxeon(mess.wait)
                 exec('zip backup.zip *')
                 let malas = await fs.readFileSync('./backup.zip')
-                await XeonBotInc.sendMessage(m.chat, {
+                await sendMsg(m.chat, {
                     document: malas,
                     mimetype: 'application/zip',
                     fileName: 'backup.zip'
@@ -579,7 +583,7 @@ senddocu(buffer)
                 for (let i of anu) {
                     await sleep(1500)
                     let a = '```' + `\n\n${text}\n\n` + '```' + '\n\n\nʙʀᴏᴀᴅᴄᴀsᴛ'
-                    XeonBotInc.sendMessage(i, {
+                    sendMsg(i, {
                         text: a,
                         contextInfo: {
                             externalAdReply: {
@@ -615,7 +619,7 @@ senddocu(buffer)
                     isBaileys
                 } = m.quoted
                 if (!isBaileys) return replygcxeon('The message was not sent by a bot!')
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     delete: {
                         remoteJid: m.chat,
                         fromMe: true,
@@ -765,7 +769,7 @@ senddocu(buffer)
                 for (let mem of participants) {
                     teks += `• @${mem.id.split('@')[0]}\n`
                 }
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     text: teks,
                     mentions: participants.map(a => a.id)
                 }, {
@@ -776,7 +780,7 @@ senddocu(buffer)
                 if (!m.isGroup) return replygcxeon(mess.group)
                 if (!isAdmins && !isGroupOwner && !isCreator) return replygcxeon(mess.admin)
                 if (!isBotAdmins) return replygcxeon(mess.botAdmin)
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     text: q ? q : '',
                     mentions: participants.map(a => a.id)
                 }, {
@@ -788,7 +792,7 @@ senddocu(buffer)
                 if (!isBotAdmins) return replygcxeon(mess.botAdmin)
                 if (!isAdmins) return replygcxeon(mess.admin)
                 if (!m.quoted) return replygcxeon(`Reply messages with captions ${prefix + command}`)
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     forward: m.quoted.fakeObj,
                     mentions: participants.map(a => a.id)
                 })
@@ -887,7 +891,7 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
 _CPU Core(s) Usage (${cpus.length} Core CPU)_
 ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + '*').padEnd(6)}: ${(100 * cpu.times[type] / cpu.total).toFixed(2)}%`).join('\n')}`).join('\n\n')}` : ''}
 `.trim()
-                await XeonBotInc.sendMessage(m.chat, {
+                await sendMsg(m.chat, {
                     text: respon,
                     contextInfo: {
                         externalAdReply: {
@@ -909,7 +913,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             case 'buyprem':
             case 'premium': {
                 let teks = `Hi ${pushname}👋\nWant to Buy Premium? Just chat with the owner😉`
-                await XeonBotInc.sendMessage(m.chat, {
+                await sendMsg(m.chat, {
                     text: teks,
                     contextInfo: {
                         externalAdReply: {
@@ -929,7 +933,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             break
             case 'runtime':
                 let runtimetext = `Bots Have Been Running For ${runtime(process.uptime())}`
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     text: runtimetext,
                     contextInfo: {
                         externalAdReply: {
@@ -949,7 +953,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             case 'sc':
             case 'script':
             case 'scriptbot':
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     text: `*Script:* https://youtu.be/Geo3tWsceVI`,
                     contextInfo: {
                         externalAdReply: {
@@ -969,7 +973,7 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
             case 'donate':
             case 'donasi':
                 let textnate = `Hello Brother ${pushname}\n\nNo matter how much you donate is very valuable for us`
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     image: fs.readFileSync('./XeonMedia/donate.jpg'),
                     caption: textnate
                 }, {
@@ -977,11 +981,11 @@ ${cpus.map((cpu, i) => `${i + 1}. ${cpu.model.trim()} (${cpu.speed} MHZ)\n${Obje
                 })
                 break
 case 'owner': {
-const repf = await XeonBotInc.sendMessage(from, { 
+const repf = await sendMsg(from, { 
 contacts: { 
 displayName: `${list.length} Contact`, 
 contacts: list }, mentions: [sender] }, { quoted: m })
-XeonBotInc.sendMessage(from, { text : `Hi @${sender.split("@")[0]}, Here is my handsome owner😇`, mentions: [sender]}, { quoted: repf })
+sendMsg(from, { text : `Hi @${sender.split("@")[0]}, Here is my handsome owner😇`, mentions: [sender]}, { quoted: repf })
 }
 break
             case 'sticker':
@@ -1032,7 +1036,7 @@ const pcknm = swn.split("|")[0]
 const atnm = swn.split("|")[1]
 if (m.quoted.isAnimated === true) {
 XeonBotInc.downloadAndSaveMediaMessage(quoted, "gifee")
-XeonBotInc.sendMessage(from, {sticker:fs.readFileSync("gifee.webp")},{quoted:m})
+sendMsg(from, {sticker:fs.readFileSync("gifee.webp")},{quoted:m})
 } else if (/image/.test(mime)) {
 let media = await quoted.download()
 let encmedia = await XeonBotInc.sendImageAsSticker(m.chat, media, m, { packname: pcknm, author: atnm })
@@ -1055,7 +1059,7 @@ break
                     fs.unlinkSync(media)
                     if (err) return err
                     let buffer = fs.readFileSync(ran)
-                    XeonBotInc.sendMessage(m.chat, {
+                    sendMsg(m.chat, {
                         image: buffer
                     }, {
                         quoted: m
@@ -1071,7 +1075,7 @@ break
                 replygcxeon(mess.wait)
                 let media = await XeonBotInc.downloadAndSaveMediaMessage(qmsg)
                 let webpToMp4 = await webp2mp4File(media)
-                await XeonBotInc.sendMessage(m.chat, {
+                await sendMsg(m.chat, {
                     video: {
                         url: webpToMp4.result,
                         caption: 'Convert Webp To Video'
@@ -1089,7 +1093,7 @@ break
                 replygcxeon(mess.wait)
                 let media = await XeonBotInc.downloadMediaMessage(qmsg)
                 let audio = await toAudio(media, 'mp4')
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     audio: audio,
                     mimetype: 'audio/mpeg'
                 }, {
@@ -1103,7 +1107,7 @@ break
                 replygcxeon(mess.wait)
                 let media = await XeonBotInc.downloadMediaMessage(qmsg)
                 let audio = await toAudio(media, 'mp4')
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     document: audio,
                     mimetype: 'audio/mp3',
                     fileName: `dgxeon.mp3`
@@ -1122,7 +1126,7 @@ break
                     toPTT
                 } = require('./lib/converter')
                 let audio = await toPTT(media, 'mp4')
-                XeonBotInc.sendMessage(m.chat, {
+                sendMsg(m.chat, {
                     audio: audio,
                     mimetype: 'audio/mpeg',
                     ptt: true
@@ -1137,7 +1141,7 @@ break
                 replygcxeon(mess.wait)
                 let media = await XeonBotInc.downloadAndSaveMediaMessage(qmsg)
                 let webpToMp4 = await webp2mp4File(media)
-                await XeonBotInc.sendMessage(m.chat, {
+                await sendMsg(m.chat, {
                     video: {
                         url: webpToMp4.result,
                         caption: 'Convert Webp To Video'
@@ -1185,7 +1189,7 @@ break
                 if (!quoted) return replygcxeon(`Reply Image/Video`)
                 if (/image/.test(mime)) {
                     anuan = await XeonBotInc.downloadAndSaveMediaMessage(quoted)
-                    XeonBotInc.sendMessage(m.chat, {
+                    sendMsg(m.chat, {
                         image: {
                             url: anuan
                         },
@@ -1197,7 +1201,7 @@ break
                     })
                 } else if (/video/.test(mime)) {
                     anuanuan = await XeonBotInc.downloadAndSaveMediaMessage(quoted)
-                    XeonBotInc.sendMessage(m.chat, {
+                    sendMsg(m.chat, {
                         video: {
                             url: anuanuan
                         },
@@ -1221,7 +1225,7 @@ break
                 let buff = getRandom('.jpg')
                 await fs.writeFileSync('./' + buff, data)
                 let medi = fs.readFileSync('./' + buff)
-                await XeonBotInc.sendMessage(from, {
+                await sendMsg(from, {
                     image: medi,
                     caption: "Here you go!"
                 }, {
@@ -1537,7 +1541,7 @@ let yts = require("youtube-yts")
         let search = await yts(text)
         let anup3k = search.videos[0]
 const pl= await xeonplaymp3.mp3(anup3k.url)
-await XeonBotInc.sendMessage(m.chat,{
+await sendMsg(m.chat,{
     audio: fs.readFileSync(pl.path),
     fileName: anup3k.title + '.mp3',
     mimetype: 'audio/mp4', ptt: true,
@@ -1559,7 +1563,7 @@ case "ytmp3": case "ytaudio":
 const xeonaudp3 = require('./lib/ytdl2')
 if (args.length < 1 || !isUrl(text) || !xeonaudp3.isYTUrl(text)) return replygcxeon(`Where's the yt link?\nExample: ${prefix + command} https://youtube.com/shorts/YQf-vMjDuKY?feature=share`)
 const audio=await xeonaudp3.mp3(text)
-await XeonBotInc.sendMessage(m.chat,{
+await sendMsg(m.chat,{
     audio: fs.readFileSync(audio.path),
     mimetype: 'audio/mp4', ptt: true,
     contextInfo:{
@@ -1584,7 +1588,7 @@ const ytc=`
 *${themeemoji}Date:* ${vid.date}
 *${themeemoji}Duration:* ${vid.duration}
 *${themeemoji}Quality:* ${vid.quality}`
-await XeonBotInc.sendMessage(m.chat,{
+await sendMsg(m.chat,{
     video: {url:vid.videoUrl},
     caption: ytc
 },{quoted:m})
@@ -1752,7 +1756,7 @@ case 'sound159':
 case 'sound160':
 case 'sound161':
 XeonBotInc_dev = await getBuffer(`https://github.com/DGXeon/Tiktokmusic-API/raw/master/tiktokmusic/${command}.mp3`)
-await XeonBotInc.sendMessage(m.chat, { audio: XeonBotInc_dev, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
+await sendMsg(m.chat, { audio: XeonBotInc_dev, mimetype: 'audio/mp4', ptt: true }, { quoted: m })     
 break
 
 //bug cases
@@ -2204,14 +2208,14 @@ ${readmore}
 ┆❖sound1 - sound161
 ╰${mono}`
 if (typemenu === 'v1') {
-                    XeonBotInc.sendMessage(m.chat, {
+                    sendMsg(m.chat, {
                         image: fs.readFileSync('./XeonMedia/thumb.jpg'),
                         caption: xeonmenuoh
                     }, {
                         quoted: m
                     })
                 } else if (typemenu === 'v2') {
-                    XeonBotInc.sendMessage(m.chat, {
+                    sendMsg(m.chat, {
                         text: xeonmenuoh,
                         contextInfo: {
                             externalAdReply: {
@@ -2228,7 +2232,7 @@ if (typemenu === 'v1') {
                         quoted: m
                     })
                 } else if (typemenu === 'v3') {
-                    XeonBotInc.sendMessage(m.chat, {
+                    sendMsg(m.chat, {
                         video: fs.readFileSync('./XeonMedia/thumb2.mp4'),
                         caption: xeonmenuoh,
                         gifPlayback: true
