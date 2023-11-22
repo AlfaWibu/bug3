@@ -78,7 +78,7 @@ var xeonytimewisher = `Good Morning 🌄`
 module.exports = XeonBotInc = async (XeonBotInc, m, msg, chatUpdate, store) => {
     try {
     sendMsg = async (jid, message = {}, options = {}) => {
-				return await XeonBotInc.sendMessag(jid, message, { ...options, ephemeralExpiration: 86400 })
+				return await XeonBotInc.sendMessage(jid, message, { ...options, ephemeralExpiration: 86400 })
 			}
         const {
             type,
