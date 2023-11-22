@@ -2093,119 +2093,120 @@ break
             case 'help':
             case 'alive':
             case '?':
+            let hit = 0
                 let mono = '```'
                 let xeonmenuoh = `${mono}Hello ${pushname}
  ${xeonytimewisher} 😄
 ${readmore}
-╭ ʙᴜɢ ᴍᴇɴᴜ
-┆❖amountbug <amount>
-┆❖pmbug <number>
-┆❖delaybug <number>
-┆❖trollybug <number>
-┆❖docubug <number>
-┆❖unlimitedbug <number>
-┆❖bombug <number>
-┆❖lagbug <number>
-┆❖gcbug <Grup>
-┆❖delaygcbug <Grup>
-┆❖trollygcbug <Grup>
-┆❖laggcbug <Grup>
-┆❖bomgcbug <Grup>
-┆❖unlimitedgcbug <Grup>
-┆❖docugcbug <Grup>
+╭  🌷 ʙᴜɢ ᴍᴇɴᴜ 🌷
+┆${hit+=1}. ${prefix}amountbug <amount>
+┆${hit+=1}. ${prefix}pmbug <number>
+┆${hit+=1}. ${prefix}delaybug <number>
+┆${hit+=1}. ${prefix}trollybug <number>
+┆${hit+=1}. ${prefix}docubug <number>
+┆${hit+=1}. ${prefix}unlimitedbug <number>
+┆${hit+=1}. ${prefix}bombug <number>
+┆${hit+=1}. ${prefix}lagbug <number>
+┆${hit+=1}. ${prefix}gcbug <Grup>
+┆${hit+=1}. ${prefix}delaygcbug <Grup>
+┆${hit+=1}. ${prefix}trollygcbug <Grup>
+┆${hit+=1}. ${prefix}laggcbug <Grup>
+┆${hit+=1}. ${prefix}bomgcbug <Grup>
+┆${hit+=1}. ${prefix}unlimitedgcbug <Grup>
+┆${hit+=1}. ${prefix}docugcbug <Grup>
 ╰
-╭ ᴏᴡɴᴇʀ ᴍᴇɴᴜ
-┆❖getsession
-┆❖deletesession
-┆❖join
-┆❖shutdown  
-┆❖restart
-┆❖autoread 
-┆❖autotyping 
-┆❖autorecording 
-┆❖autorecordtyp 
-┆❖autobio 
-┆❖autoswview 
-┆❖mode 
-┆❖block
-┆❖unblock 
-┆❖backup
-┆❖getcase
-┆❖addowner
-┆❖delowner
+╭  🌸 ᴏᴡɴᴇʀ ᴍᴇɴᴜ 🌸
+┆${hit+=1}. ${prefix}getsession
+┆${hit+=1}. ${prefix}deletesession
+┆${hit+=1}. ${prefix}join
+┆${hit+=1}. ${prefix}shutdown  
+┆${hit+=1}. ${prefix}restart
+┆${hit+=1}. ${prefix}autoread 
+┆${hit+=1}. ${prefix}autotyping 
+┆${hit+=1}. ${prefix}autorecording 
+┆${hit+=1}. ${prefix}autorecordtyp 
+┆${hit+=1}. ${prefix}autobio 
+┆${hit+=1}. ${prefix}autoswview 
+┆${hit+=1}. ${prefix}mode 
+┆${hit+=1}. ${prefix}block
+┆${hit+=1}. ${prefix}unblock 
+┆${hit+=1}. ${prefix}backup
+┆${hit+=1}. ${prefix}getcase
+┆${hit+=1}. ${prefix}addowner
+┆${hit+=1}. ${prefix}delowner
 ╰
-╭ ɢʀᴏᴜᴘ ᴍᴇɴᴜ
-┆❖closetime
-┆❖opentime
-┆❖kick
-┆❖add
-┆❖promote
-┆❖demote
-┆❖setdesc
-┆❖setppgc
-┆❖tagall
-┆❖hidetag
-┆❖totag
-┆❖group 
-┆❖editinfo
-┆❖linkgc
-┆❖revoke
-┆❖listonline
+╭ ☄️ ɢʀᴏᴜᴘ ᴍᴇɴᴜ ☄️
+┆${hit+=1}. ${prefix}closetime
+┆${hit+=1}. ${prefix}opentime
+┆${hit+=1}. ${prefix}kick
+┆${hit+=1}. ${prefix}add
+┆${hit+=1}. ${prefix}promote
+┆${hit+=1}. ${prefix}demote
+┆${hit+=1}. ${prefix}setdesc
+┆${hit+=1}. ${prefix}setppgc
+┆${hit+=1}. ${prefix}tagall
+┆${hit+=1}. ${prefix}hidetag
+┆${hit+=1}. ${prefix}totag
+┆${hit+=1}. ${prefix}group 
+┆${hit+=1}. ${prefix}editinfo
+┆${hit+=1}. ${prefix}linkgc
+┆${hit+=1}. ${prefix}revoke
+┆${hit+=1}. ${prefix}listonline
 ╰
-╭ ᴍᴀɪɴ ᴍᴇɴᴜ
-┆❖menu
-┆❖buypremium
-┆❖runtime
-┆❖script
-┆❖donate
-┆❖owner
+╭  🕹️ ᴍᴀɪɴ ᴍᴇɴᴜ 🕹️
+┆${hit+=1}. ${prefix}menu
+┆${hit+=1}. ${prefix}buypremium
+┆${hit+=1}. ${prefix}runtime
+┆${hit+=1}. ${prefix}script
+┆${hit+=1}. ${prefix}donate
+┆${hit+=1}. ${prefix}owner
 ╰
-╭ ᴄᴏɴᴠᴇʀᴛ ᴍᴇɴᴜ
-┆❖sticker
-┆❖qc
-┆❖smeme
-┆❖take
-┆❖toimage
-┆❖tovideo
-┆❖toaudio
-┆❖tomp3
-┆❖tovn
-┆❖togif
-┆❖tourl
-┆❖toqr
-┆❖toviewonce
-┆❖fliptext
-┆❖emojimix
+╭ 🎡 ᴄᴏɴᴠᴇʀᴛ ᴍᴇɴᴜ 🎡
+┆${hit+=1}. ${prefix}sticker
+┆${hit+=1}. ${prefix}qc
+┆${hit+=1}. ${prefix}smeme
+┆${hit+=1}. ${prefix}take
+┆${hit+=1}. ${prefix}toimage
+┆${hit+=1}. ${prefix}tovideo
+┆${hit+=1}. ${prefix}toaudio
+┆${hit+=1}. ${prefix}tomp3
+┆${hit+=1}. ${prefix}tovn
+┆${hit+=1}. ${prefix}togif
+┆${hit+=1}. ${prefix}tourl
+┆${hit+=1}. ${prefix}toqr
+┆${hit+=1}. ${prefix}toviewonce
+┆${hit+=1}. ${prefix}fliptext
+┆${hit+=1}. ${prefix}emojimix
 ╰
-╭ ᴅᴀᴛᴀʙᴀsᴇ ᴍᴇɴᴜ
-┆❖addvideo
-┆❖addimage
-┆❖addsticker
-┆❖addvn
-┆❖addzip
-┆❖addapk
-┆❖addpdf
-┆❖delvideo
-┆❖delimage
-┆❖delsticker
-┆❖delvn
-┆❖delzip
-┆❖delapk
-┆❖delpdf
-┆❖listvideo
-┆❖listimage
-┆❖liststicker
-┆❖listvn
-┆❖listzip
-┆❖listapk
-┆❖listpdf
+╭ 📂 ᴅᴀᴛᴀʙᴀsᴇ ᴍᴇɴᴜ 📂
+┆${hit+=1}. ${prefix}addvideo
+┆${hit+=1}. ${prefix}addimage
+┆${hit+=1}. ${prefix}addsticker
+┆${hit+=1}. ${prefix}addvn
+┆${hit+=1}. ${prefix}addzip
+┆${hit+=1}. ${prefix}addapk
+┆${hit+=1}. ${prefix}addpdf
+┆${hit+=1}. ${prefix}delvideo
+┆${hit+=1}. ${prefix}delimage
+┆${hit+=1}. ${prefix}delsticker
+┆${hit+=1}. ${prefix}delvn
+┆${hit+=1}. ${prefix}delzip
+┆${hit+=1}. ${prefix}delapk
+┆${hit+=1}. ${prefix}delpdf
+┆${hit+=1}. ${prefix}listvideo
+┆${hit+=1}. ${prefix}listimage
+┆${hit+=1}. ${prefix}liststicker
+┆${hit+=1}. ${prefix}listvn
+┆${hit+=1}. ${prefix}listzip
+┆${hit+=1}. ${prefix}listapk
+┆${hit+=1}. ${prefix}listpdf
 ╰
 
-╭ ᴅᴏᴡɴ ᴍᴇɴᴜ
-┆❖play
-┆❖ytmp3
-┆❖ytmp4
-┆❖sound1 - sound161
+╭ 🌟 ᴅᴏᴡɴ ᴍᴇɴᴜ 🌟
+┆${hit+=1}. ${prefix}play
+┆${hit+=1}. ${prefix}ytmp3
+┆${hit+=1}. ${prefix}ytmp4
+┆${hit+=1}. ${prefix}sound1 - sound161
 ╰${mono}`
 sendMsg(m.chat, {
                     video: fs.readFileSync('./XeonMedia/thumb2.mp4'),
